@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Literalnie Picker",
+  "version": "1.0.0",
+  "icons": {
+    "32": "logo32.png"
+  },
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://*.literalnie.fun/*"
+  ]
+}
