@@ -4,17 +4,15 @@
     const today = new Date().toISOString().split('T')[0];
     datePicker.setAttribute('max', today)
 
-    chrome.storage.local.get(['diff'], function(result) {
-        const today = new Date();
-        const pastDate = new Date(today);
-        pastDate.setDate(today.getDate() - result.diff);
-        datePicker.value = pastDate.toISOString().split('T')[0];
+    chrome.storage.local.get(['literalnieGameDate'], function(result) {
+        datePicker.value = result.literalnieGameDate ? result.literalnieGameDate : today;
     });
 
     function dateChange() {
-        const diff = calcDaysDifference(datePicker.valueAsDate);
-        chrome.storage.local.set({diff: diff});
+        const date = datePicker.valueAsDate.toISOString().split('T')[0]
+        chrome.storage.local.set({literalnieGameDate: date});
 
+        const diff = calcDaysDifference(datePicker.valueAsDate);
         chrome.declarativeNetRequest.updateDynamicRules({
             addRules: [
                 {
